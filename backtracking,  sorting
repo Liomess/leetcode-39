@@ -1,0 +1,24 @@
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        def solve(self,i,nums,n,arr,res,target):
+            if target==0:
+                res.append(arr)
+                return
+            if target<0:
+                return
+            if i<n and target-nums[i]>=0:
+                target-=nums[i]
+                arr.append(nums[i])
+                solve(self,i,nums,n,list(arr),res,target)
+                target+=nums[i]
+                arr.pop()
+                if i+1<n:
+                    solve(self,i+1,nums,n,list(arr),res,target)
+            else:
+                return
+            
+        candidates.sort()
+        n=len(candidates)
+        res=[]
+        solve(self,0,candidates,n,[],res,target)
+        return res
